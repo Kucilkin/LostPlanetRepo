@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         xInput = Input.GetAxisRaw("Horizontal"); //Eingabesignal fürs laufen
-        GroundCheck(); // GroundCheck aufrufen
+        //GroundCheck(); // GroundCheck aufrufen
 
         //Drehen:
         //if (xInput > 0f) // nach rechts gehen
@@ -56,14 +56,14 @@ public class PlayerController : MonoBehaviour
     }
 
     //Groundcheck:
-    void GroundCheck()
-    {
-        Collider2D checkBox = Physics2D.OverlapBox(FeetTrans.position, CheckBox, 1, GroundLayer);
-        if (checkBox)
-        {
-            jumpCounter = MaxJumps;
-        }
-    }
+    //void GroundCheck()
+    //{
+    //    Collider2D checkBox = Physics2D.OverlapBox(FeetTrans.position, CheckBox, 1, GroundLayer);
+    //    if (checkBox)
+    //    {
+    //        jumpCounter = MaxJumps;
+    //    }
+    //}
 
     //GroundcheckBox:
     //private void OnDrawGizmos()
