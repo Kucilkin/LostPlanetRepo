@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 1362489236}
   - component: {fileID: 1362489235}
   - component: {fileID: 1362489239}
+  - component: {fileID: 1362489240}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -354,7 +355,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1362489236
 BoxCollider2D:
@@ -461,7 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  jumpForce: 20
+  JumpForce: 0
   MaxJumps: 2
   RB: {fileID: 1362489235}
   playerModel: {fileID: 1362489234}
@@ -470,6 +471,20 @@ MonoBehaviour:
     m_Bits: 0
   CheckBox: {x: 0, y: 0}
   FeetTrans: {fileID: 0}
+--- !u!114 &1362489240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362489234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15eb1b5ab45b8f44dacef23b7876238a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DashSpeed: 50
+  StartDashTime: 0.1
 --- !u!1 &1448151393
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private float xInput; // Spielereingabe
     private float towardsY = 0f; // Winkel zu dem dem sich der PLayer um eigene Achse dreht
     //Springen:
-    public float jumpForce; //Sprungkraft
+    public float JumpForce; //Sprungkraft
     public int MaxJumps; //maximale Sprünge
     private int jumpCounter; //Sprungzähler
 
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxisRaw("Jump") > 0f && jumpCounter > 0)
         {
             Vector2 JumpPower = RB.velocity;
-            JumpPower.y = jumpForce;
+            JumpPower.y = JumpForce;
             RB.velocity = JumpPower;
             jumpCounter--;
         }
