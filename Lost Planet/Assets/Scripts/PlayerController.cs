@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Movement:
     public float Speed; // Playerspeed
     private float xInput; // Spielereingabe
     private float towardsY = 0f; // Winkel zu dem dem sich der PLayer um eigene Achse dreht
-    
-    public float jumpPush = 5f; // Sprungkraft
-    private bool onGround = false;
+    //Springen:
+    public float jumpForce; //Sprungkraft
+    public int MaxJumps; //maximale Sprünge
+    private int jumpCounter; //Sprungzähler
 
     public Rigidbody2D RB;
     public GameObject playerModel;
+    //Ground:
+    public LayerMask GroundLayer;
+    public Vector2 CheckBox; 
+    public Transform FeetTrans;
 
     void Start()
     {
@@ -22,6 +28,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         xInput = Input.GetAxisRaw("Horizontal"); //Eingabesignal fürs laufen
+        GroundCheck(); // GroundCheck aufrufen
 
         //Drehen:
         //if (xInput > 0f) // nach rechts gehen
@@ -32,21 +39,36 @@ public class PlayerController : MonoBehaviour
         //playerModel.transform.rotation = Quaternion.Lerp(playerModel.transform.rotation, Quaternion.Euler(0f, towardsY, 0f), Time.deltaTime * 10f);
 
         //Springen:
-        //RaycastHit2D hit2D;
-        //onGround = Physics.Raycast(transform.position (Vector3.up * 0, 1f), Vector3.down, out hit2D, 0,1f);
-
-        if (Input.GetAxisRaw("Jump") > 0f)
+        if (Input.GetAxisRaw("Jump") > 0f && jumpCounter > 0)
         {
             Vector2 JumpPower = RB.velocity;
-            JumpPower.y = jumpPush;
+            JumpPower.y = jumpForce;
             RB.velocity = JumpPower;
+            jumpCounter--;
         }
-        
 
     }
 
     private void FixedUpdate()
     {
+        if(xInput != 0)
         RB.velocity = new Vector2(xInput * Speed, RB.velocity.y); //Vorfärtsbewegung
     }
+
+    //Groundcheck:
+    void GroundCheck()
+    {
+        Collider2D checkBox = Physics2D.OverlapBox(FeetTrans.position, CheckBox, 1, GroundLayer);
+        if (checkBox)
+        {
+            jumpCounter = MaxJumps;
+        }
+    }
+
+    //GroundcheckBox:
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireCube(FeetTrans.position, CheckBox);
+    //}
 }
